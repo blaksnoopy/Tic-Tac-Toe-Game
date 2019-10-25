@@ -1,24 +1,42 @@
-/*----- constants -----*/
+// 1) Define required constants
 
 
 
 
-/*----- app's state (variables) -----*/
+// 2) Define required variables used to track the state of the game
 
 
 
 
-/*----- cached element references -----*/
+// 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant.
+
+
+
+// 4) Upon loading the app should:
+// 	4.1) Initialize the state variables
+
+
+
+// 	4.2) Render those values to the page
 
 
 
 
-/*----- event listeners -----*/
+
+
+// 	4.3) Wait for the user to click a square
 
 
 
 
-/*----- functions -----*/
+// 5) Handle a player clicking a square
+
+
+
+
+
+// 6) Handle a player clicking the replay button
+
 
 
 
