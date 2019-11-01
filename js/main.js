@@ -39,7 +39,6 @@ let button = document.querySelector('button');
 // 4) Upon loading the app should:
 // 	4.1) Initialize the state variables
 
-// done
 init()
 function init() {
     board = [
@@ -71,13 +70,6 @@ function render() {
       board[i] = squares[i];
       squares[i].style.backgroundColor = colors.emptySpace;
     };
-    // if(winner === null) {
-    //     return "Game still in progress"
-    //   } else {
-    //       return /*`Congratulations ${} You win!`*/
-    //   } else if(winner === 'T') {
-    //     return "Game is a tie"
-    //   }
 }
 
 
@@ -115,28 +107,10 @@ function checkWinner() {
         if(count === 3) {
             winner = player1;
             container.removeEventListener('click', handleSquareClick);
-            // document.getElementById('0').className = 'winnerAssigned';
-            // document.getElementById('1').className = 'winnerAssigned';
-            // document.getElementById('2').className = 'winnerAssigned';
-            // document.getElementById('3').className = 'winnerAssigned';
-            // document.getElementById('4').className = 'winnerAssigned';
-            // document.getElementById('5').className = 'winnerAssigned';
-            // document.getElementById('6').className = 'winnerAssigned';
-            // document.getElementById('7').className = 'winnerAssigned';
-            // document.getElementById('8').className = 'winnerAssigned';
           return message.textContent = 'Player 1 wins!';
         } else if (count === -3) {
             winner = player2;
             container.removeEventListener('click', handleSquareClick);
-            // document.getElementById('0').className = 'winnerAssigned';
-            // document.getElementById('1').className = 'winnerAssigned';
-            // document.getElementById('2').className = 'winnerAssigned';
-            // document.getElementById('3').className = 'winnerAssigned';
-            // document.getElementById('4').className = 'winnerAssigned';
-            // document.getElementById('5').className = 'winnerAssigned';
-            // document.getElementById('6').className = 'winnerAssigned';
-            // document.getElementById('7').className = 'winnerAssigned';
-            // document.getElementById('8').className = 'winnerAssigned';
             return message.textContent = 'Player 2 wins!';
         } else if (!board.includes(0)) {
             message.textContent = "Tie"
