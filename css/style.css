@@ -22,3 +22,16 @@
     border-radius: 50%;
     border: 1px solid black;
   }
+
+  div {
+      text-align: center;
+      font-size: 20px;
+  }
+
+  div:hover {
+      cursor: pointer;
+  }
+
+  button:hover {
+      cursor: pointer;
+  }
