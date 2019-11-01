@@ -1,15 +1,15 @@
 // 1) Define required constants
 const colors = {
     emptySpace: null,
-    '1': 'blue',
-    '-1': 'red'
+    'X': 'purple',
+    'O': 'yellow'
 }
 
 const winningCombo = [
-    [1, 2, 3], [4, 5, 6],
-    [7, 8, 9], [1, 4, 7],
-    [2, 5, 8], [3, 6, 9],
-    [1, 5, 9], [3, 5, 7]
+    [0, 1, 2], [3, 4, 5],
+    [6, 7, 8], [0, 3, 6],
+    [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
 ];  
 
 
@@ -23,11 +23,7 @@ let board = [
         0, 0, 0
     ];
 let turn = -1;
-let winner = [
-    null, 
-    'T', 
-    'player that won'
-];
+let winner;
 
 
 
@@ -37,6 +33,7 @@ let winner = [
 let squares = document.querySelectorAll('div')
 let container = document.querySelector('.container')
 let message = document.querySelector('h2');
+let button = document.querySelector('button');
 
 
 // 4) Upon loading the app should:
@@ -52,7 +49,14 @@ function init() {
     ];
     winner = null;
     turn = 1;
-};
+    squares.forEach(function(sq) {
+        sq.textContent = '';
+        sq.className = 'cell';
+        sq.style.backgroundColor = null;
+    });
+    container.addEventListener('click', handleSquareClick);
+    message.textContent = '';
+    };
 
 
 
@@ -67,15 +71,14 @@ function render() {
       board[i] = squares[i];
       squares[i].style.backgroundColor = colors.emptySpace;
     };
-    if(winner === null) {
-        return "Game still in progress"
-      } else if(winner === 'T') {
-        return "Game is a tie"
-      } else {
-          return /*`Congratulations ${} You win!`*/
-      }
+    // if(winner === null) {
+    //     return "Game still in progress"
+    //   } else {
+    //       return /*`Congratulations ${} You win!`*/
+    //   } else if(winner === 'T') {
+    //     return "Game is a tie"
+    //   }
 }
-// console.log(render())
 
 
 
@@ -88,17 +91,14 @@ container.addEventListener('click', handleSquareClick);
 
 // 5) Handle a player clicking a square
 function handleSquareClick(evt) {
-    if(evt.target.tagName !== 'DIV' ||
+    board[parseInt(evt.target.id)] = turn
+       if(evt.target.tagName !== 'DIV' ||
        evt.target.className === 'disable'
-       ) return;
-    // for(i = 0; i < squares.length; i++)
-        // squares[i] === evt.target;        
+       ) return;        
     if(turn === 1) {
-        evt.target.textContent = 'X'; 
-        // console.log(`player X`)
+        evt.target.style.backgroundColor = colors.X;
     } else {
-        evt.target.textContent = 'O';
-        // console.log(`player O`)
+        evt.target.style.backgroundColor = colors.O;
     }
     evt.target.className = 'disable';
     checkWinner();
@@ -113,10 +113,33 @@ function checkWinner() {
             count += board[winningCombo[i][x]];
         }
         if(count === 3) {
-            return message.textContent = 'Player 1 wins!'
+            winner = player1;
+            container.removeEventListener('click', handleSquareClick);
+            // document.getElementById('0').className = 'winnerAssigned';
+            // document.getElementById('1').className = 'winnerAssigned';
+            // document.getElementById('2').className = 'winnerAssigned';
+            // document.getElementById('3').className = 'winnerAssigned';
+            // document.getElementById('4').className = 'winnerAssigned';
+            // document.getElementById('5').className = 'winnerAssigned';
+            // document.getElementById('6').className = 'winnerAssigned';
+            // document.getElementById('7').className = 'winnerAssigned';
+            // document.getElementById('8').className = 'winnerAssigned';
+          return message.textContent = 'Player 1 wins!';
         } else if (count === -3) {
-            return message.textContent = 'Player 2 wins!'
-        } else {
+            winner = player2;
+            container.removeEventListener('click', handleSquareClick);
+            // document.getElementById('0').className = 'winnerAssigned';
+            // document.getElementById('1').className = 'winnerAssigned';
+            // document.getElementById('2').className = 'winnerAssigned';
+            // document.getElementById('3').className = 'winnerAssigned';
+            // document.getElementById('4').className = 'winnerAssigned';
+            // document.getElementById('5').className = 'winnerAssigned';
+            // document.getElementById('6').className = 'winnerAssigned';
+            // document.getElementById('7').className = 'winnerAssigned';
+            // document.getElementById('8').className = 'winnerAssigned';
+            return message.textContent = 'Player 2 wins!';
+        } else if (!board.includes(0)) {
+            message.textContent = "Tie"
             return;
         }
     }
@@ -127,8 +150,7 @@ function checkWinner() {
 
 
 // 6) Handle a player clicking the replay button
-
-
+button.addEventListener('click', init);
 
 
 
